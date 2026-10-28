@@ -10,12 +10,17 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(CustomerNotFoundException.class)
-    public ProblemDetail handleCustomerNotFound(CustomerNotFoundException ex){
+    public ProblemDetail handleCustomerNotFound(CustomerNotFoundException ex) {
         return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ProblemDetail handleIllegalArgument(IllegalArgumentException ex){
+    public ProblemDetail handleIllegalArgument(IllegalArgumentException ex) {
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+
+    @ExceptionHandler
+    public ProblemDetail handleAccountNotFound(AccountNotFoundException ex){
+        return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 }
