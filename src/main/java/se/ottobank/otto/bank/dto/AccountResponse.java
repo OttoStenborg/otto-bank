@@ -11,7 +11,7 @@ public record AccountResponse(Long id, String accountNumber, BigDecimal balance,
                 account.getId(),
                 account.getAccountNumber(),
                 account.getBalance(),
-                account.getCustomer().getId()
+                account.getAccountHolder().getId()
         );
     }
 }

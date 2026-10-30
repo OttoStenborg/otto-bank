@@ -13,18 +13,32 @@ public class Customer {
     private Long id;
 
     public Customer(String name) {
-        this.name = name;
+        this.name = requireCorrectName(name);
     }
-    protected Customer(){
 
+    protected Customer() {
     }
+
+    private String requireCorrectName(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Name cannot be blank");
+        }
+        for (int i = 0; i < name.length(); i++) {
+            char c = name.charAt(i);
+            if (!Character.isLetter(c) && c != ' ' && c != '-') {
+                throw new IllegalArgumentException("Name can only contain letters, spaces and hyphens");
+            }
+        }
+        return name;
+    }
+
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void changeName(String name) {
+        this.name = requireCorrectName(name);
     }
 
     public Long getId() {

@@ -1,8 +1,9 @@
 package se.ottobank.otto.bank.controller;
 
 import org.springframework.web.bind.annotation.*;
+import se.ottobank.otto.bank.dto.ChangeCustomerNameRequest;
 import se.ottobank.otto.bank.dto.CreateCustomerRequest;
-import se.ottobank.otto.bank.entity.Customer;
+import se.ottobank.otto.bank.dto.CustomerResponse;
 import se.ottobank.otto.bank.service.CustomerService;
 
 @RestController
@@ -13,15 +14,13 @@ public class CustomerController {
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
+
     @PostMapping
-    public Customer createCustomer(@RequestBody CreateCustomerRequest request){
-        return customerService.createCustomer(request.name());
+    public CustomerResponse createCustomer(@RequestBody CreateCustomerRequest request) {
+        return CustomerResponse.from(customerService.createCustomer(request.name()));
     }
 
-    @GetMapping("/{id}")
-    public Customer getCustomer(@PathVariable Long id){
-        return customerService.getCustomer(id);
-    }
+
 
 
 }

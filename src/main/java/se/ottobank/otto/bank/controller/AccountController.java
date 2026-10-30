@@ -1,9 +1,6 @@
 package se.ottobank.otto.bank.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import se.ottobank.otto.bank.dto.AccountResponse;
 import se.ottobank.otto.bank.dto.CreateAccountRequest;
 import se.ottobank.otto.bank.service.AccountService;
@@ -17,12 +14,8 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-
-
     @PostMapping
-    public AccountResponse createAccount(@RequestBody CreateAccountRequest request){
-        Long customerId = request.customerId();
-        return AccountResponse.from(accountService.openAccount(customerId));
+    public AccountResponse createAccount(@RequestBody CreateAccountRequest request) {
+        return AccountResponse.from(accountService.openAccount(request.customerId()));
     }
-
 }

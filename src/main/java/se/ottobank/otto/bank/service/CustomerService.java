@@ -13,13 +13,20 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public Customer createCustomer(String name){
+    public Customer createCustomer(String name) {
         Customer customer = new Customer(name);
         return customerRepository.save(customer);
     }
 
-    public Customer getCustomer(Long id){
+    public Customer getCustomer(Long id) {
         return customerRepository.findById(id)
                 .orElseThrow(() -> new CustomerNotFoundException(id));
     }
+
+    public Customer changeCustomerName(Long id, String newName){
+        Customer customer = getCustomer(id);
+        customer.changeName(newName);
+        return customerRepository.save(customer);
+    }
+
 }

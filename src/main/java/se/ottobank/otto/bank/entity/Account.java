@@ -15,11 +15,11 @@ public class Account {
     private String accountNumber;
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
-    private Customer customer;
+    private Customer accountHolder;
 
-    public Account(String accountNumber, Customer customer) {
+    public Account(String accountNumber, Customer accountHolder) {
         this.accountNumber = accountNumber;
-        this.customer = customer;
+        this.accountHolder = accountHolder;
     }
 
     protected Account() {
@@ -57,11 +57,7 @@ public class Account {
         return accountNumber;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public Customer getAccountHolder() {
+        return accountHolder;
     }
 }
